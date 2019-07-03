@@ -4,6 +4,7 @@ import item3 from "./item3.png"
 import item4 from "./item4.png"
 import item5 from "./item5.png"
 import item6 from "./item6.png"
+import { stat } from "fs";
 
 
 
@@ -21,6 +22,14 @@ const initState = {
     tit: "ReduxShop"
 }
 export default function Items(state= initState, action){
-    console.log(action);
-       return state;
-    }
+        switch(action.type) {
+            case "ADD_TO_CART":
+                {
+               return {...state ,addedItems :state.addedItems.concat(action.payload)}
+                 
+                }
+                default:    return state               
+            } 
+  
+
+}

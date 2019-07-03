@@ -6,8 +6,9 @@ import Home from "./components/Home"
 import Items from "./reducers/Items"
 
 
-const store = createStore(Items)
-store.dispatch({type: "ADD_TO_CART"})
+const store = createStore(Items,  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+
+
 export default function App() {
   return (
     <Provider store={store}>

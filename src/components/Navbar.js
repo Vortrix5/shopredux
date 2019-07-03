@@ -30,7 +30,7 @@ function Navbar(props) {
           <Typography variant="h6" className={classes.title}>
             {props.tit}
           </Typography>
-          <IconButton edge="start" className={classes.menuButton} aria-label="Cart">cart
+          <IconButton edge="start" className={classes.menuButton} aria-label="Cart">
           </IconButton>
         </Toolbar>
       </AppBar>

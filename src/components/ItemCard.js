@@ -19,7 +19,8 @@ const useStyles = makeStyles({
 
 export default function ItemCard(props) {
   const classes = useStyles();
-
+const { el } = props
+console.log( el, 'el')
   return (
     <div style={{marginTop:100, marginLeft:50, marginRight:50, display:"inline-block", width: 300}} key={props.key}>
     <Card className={classes.card}>
@@ -42,7 +43,7 @@ export default function ItemCard(props) {
         <Typography size="small">
           ${props.price}
         </Typography>
-        <Button size="small" color="primary">
+        <Button size="small" color="primary" onClick={() => props.add (el)}>
           Buy now!
         </Button>
       </CardActions>

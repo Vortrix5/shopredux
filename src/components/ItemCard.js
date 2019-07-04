@@ -43,7 +43,7 @@ console.log( el, 'el')
         <Typography size="small">
           ${props.price}
         </Typography>
-        <Button size="small" color="primary" onClick={() => props.add (el)}>
+        <Button size="small" color="primary" onClick={() => props.add (el)} disabled={props.quantity>=7}>
           Buy now!
         </Button>
       </CardActions>

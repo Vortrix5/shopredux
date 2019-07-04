@@ -10,11 +10,11 @@ class Home extends React.Component{
     render(){
 
      let itemL = this.props.items.map(item =>{
-         return <ItemCard key={item.id} add={this.onAdd} el = {item} title={item.title} desc={item.desc} price={item.price} src={item.src}/>
+         return <ItemCard key={item.id} add={this.onAdd} el = {item} title={item.title} desc={item.desc} price={item.price} src={item.src} quantity={this.props.addedItems}/>
      })
     return(
         <>
-        {itemL}
+        {itemL} 
         </>
     )
     }
@@ -22,6 +22,7 @@ class Home extends React.Component{
 
 }
 const mapStatetoProps= state=>({
-    items : state.items
+    items : state.items,
+    addedItems: state.addedItems
 })
 export default connect(mapStatetoProps)(Home);

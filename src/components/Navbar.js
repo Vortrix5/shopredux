@@ -5,6 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import {connect} from "react-redux";
+import {Link} from "react-router-dom"
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -27,11 +29,12 @@ function Navbar(props) {
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} aria-label="Menu">
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
+          <Link to="/"><Typography variant="h6" className={classes.title}>
             {props.tit}
-          </Typography>
-          <IconButton edge="start" className={classes.menuButton} aria-label="Cart">
-          </IconButton>
+          </Typography></Link>
+          <Link to="/cart"><IconButton edge="end" className={classes.menuButton} aria-label="Cart">
+            Cart
+          </IconButton></Link>
         </Toolbar>
       </AppBar>
     </div>

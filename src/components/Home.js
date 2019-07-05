@@ -1,6 +1,8 @@
 import React from "react";
 import ItemCard from "./ItemCard";
 import {connect} from "react-redux";
+import AddItem from "./AddItem";
+import AddModal from "./AddModal";
 
 
 class Home extends React.Component{
@@ -14,7 +16,8 @@ class Home extends React.Component{
      })
     return(
         <>
-        {itemL} 
+        {itemL}
+        <AddModal/>
         </>
     )
     }

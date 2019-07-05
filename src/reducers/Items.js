@@ -18,6 +18,7 @@ const initState = {
     ],
     addedItems: [],
     total: 0,
+    totalQuantity: 0,
     tit: "ReduxShop"
 }
 export default function Items(state = initState, action) {
@@ -25,23 +26,23 @@ export default function Items(state = initState, action) {
         case "ADD_TO_CART":
             {
                 if (state.addedItems.find((el) => el.id === action.payload.id)) {
-                    return { ...state, quantity: action.payload.quantity += 1, total: action.payload.price * action.payload.quantity }
+                    return { ...state, quantity: action.payload.quantity += 1, total: state.total + action.payload.price }
                 } else {
-                    return { ...state, addedItems: state.addedItems.concat(action.payload),quantity: action.payload.quantity += 1, total: action.payload.price * action.payload.quantity }
+                    return { ...state, addedItems: state.addedItems.concat(action.payload),quantity: action.payload.quantity = 1, totalQuantity: state.totalQuantity+1, total: state.total + action.payload.price * action.payload.quantity }
                 }
             }
         case "REMOVE_FROM_CART":
             {
                 
-                return {...state, addedItems: state.addedItems.splice(action.payload , 1), total: action.payload.price * action.payload.quantity}
+                return {...state, addedItems: state.addedItems.filter(w=>w.id!==action.payload.id), total: state.total - action.payload.price * action.payload.quantity}
             }
         case "ITEM_PLUS":
             {
-                    return { ...state, quantity: action.payload.quantity += 1,total: action.payload.price * action.payload.quantity }
+                    return { ...state, quantity: action.payload.quantity += 1,total: state.total + action.payload.price  }
             }
         case "ITEM_SUB":
             {
-                    return { ...state, quantity: action.payload.quantity -= 1, total: action.payload.price * action.payload.quantity }
+                    return { ...state, quantity: action.payload.quantity -= 1, total: state.total - action.payload.price }
 
             }
         default: return state

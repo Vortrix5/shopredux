@@ -76,7 +76,7 @@ export default function Items(state = initState, action) {
         }
         case "CLOSE_MODAL": {
             return {
-                ...state, open: state.open = false
+                ...state, open: state.open = false, items: state.items.concat(state.editItem).sort(function(a, b){return a.id - b.id})
             }
         }
         case "EDIT": {

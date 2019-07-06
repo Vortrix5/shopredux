@@ -44,7 +44,13 @@ console.log( el, 'el')
           ${props.price}
         </Typography>
         <Button size="small" color="primary" onClick={() => props.add (el)} disabled={props.quantity>=7}>
-          Buy now!
+          Add to Cart
+        </Button>
+        <Button size="small" color="primary" onClick={() => props.delete (el)}>
+          Delete Item
+        </Button>
+        <Button size="small" color="primary" onClick={() => props.edit (el)}>
+          Edit Item
         </Button>
       </CardActions>
     </Card>

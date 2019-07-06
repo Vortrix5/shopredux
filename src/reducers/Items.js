@@ -18,8 +18,12 @@ const initState = {
     ],
     addedItems: [],
     total: 0,
+    newItem: [],
     totalQuantity: 0,
-    tit: "ReduxShop"
+    editItem: [],
+    open: false,
+    tit: "ReduxShop",
+    index: 0
 }
 export default function Items(state = initState, action) {
     switch (action.type) {
@@ -28,23 +32,59 @@ export default function Items(state = initState, action) {
                 if (state.addedItems.find((el) => el.id === action.payload.id)) {
                     return { ...state, quantity: action.payload.quantity += 1, total: state.total + action.payload.price }
                 } else {
-                    return { ...state, addedItems: state.addedItems.concat(action.payload),quantity: action.payload.quantity = 1, totalQuantity: state.totalQuantity+1, total: state.total + action.payload.price * action.payload.quantity }
+                    return { ...state, addedItems: state.addedItems.concat(action.payload), quantity: action.payload.quantity = 1, totalQuantity: state.totalQuantity + 1, total: state.total + action.payload.price * action.payload.quantity }
                 }
             }
         case "REMOVE_FROM_CART":
             {
-                
-                return {...state, addedItems: state.addedItems.filter(w=>w.id!==action.payload.id), total: state.total - action.payload.price * action.payload.quantity}
+
+                return { ...state, addedItems: state.addedItems.filter(w => w.id !== action.payload.id), total: state.total - action.payload.price * action.payload.quantity }
             }
         case "ITEM_PLUS":
             {
-                    return { ...state, quantity: action.payload.quantity += 1,total: state.total + action.payload.price  }
+                return { ...state, quantity: action.payload.quantity += 1, total: state.total + action.payload.price }
             }
         case "ITEM_SUB":
             {
-                    return { ...state, quantity: action.payload.quantity -= 1, total: state.total - action.payload.price }
+                return ({ ...state, quantity: action.payload.quantity -= 1, total: state.total - action.payload.price })
 
             }
+        case "CHANGE_ANY_STATE": {
+            return {
+                ...state, newItem: { ...state.newItem, [action.state]: action.value, id: state.items.length + 1, quantity: 0 }
+            }
+        }
+        case "ADD_ITEM": {
+            return {
+                ...state, items: state.items.concat(state.newItem)
+            }
+        }
+        case "DELETE_ITEM": {
+            return {
+                ...state, items: state.items.filter((x) => x.id !== action.payload.id)
+            }
+        }
+        case "EDIT_ITEM": {
+            return {
+                ...state,open: state.open = false, items: state.items.concat(state.editItem).sort(function(a, b){return a.id - b.id})
+            }
+        }
+        case "OPEN_MODAL": {
+            return {
+                ...state, open: state.open = true, editItem: action.payload, index: state.items.indexOf(action.payload), items: state.items.filter(x=>x.id!==action.payload.id)
+            }
+        }
+        case "CLOSE_MODAL": {
+            return {
+                ...state, open: state.open = false
+            }
+        }
+        case "EDIT": {
+            return {
+                ...state, editItem: { ...state.editItem, [action.state]: action.value}
+            }
+        }
+        
         default: return state
     }
 

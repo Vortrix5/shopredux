@@ -35,13 +35,13 @@ function Navbar(props) {
   }, []);
   return (
     <div className={classes.root}>
-      <AppBar position="fixed" color="action" style={{backgroundColor:"#a2a4a6"}}>
-        <Toolbar>
-          <Link to="/"><Typography variant="h6" className={classes.title} style={{fontWeight:"bold", fontSize:20, fontFamily: "Sofia"}}>
+      <AppBar position="fixed" color="action" style={{backgroundColor:"#A76D60"}}>
+        <Toolbar style={{ display: "flex", justifyContent:"space-between" }}>
+          <Link to="/"><Typography variant="h6" className={classes.title} style={{fontWeight:"bold", fontSize:20, color:"#E0D0C1",  fontFamily: "Sofia"}}>
             {props.tit}
           </Typography></Link>
-          <Link style={{ marginLeft: "96pc" }} to="/cart"><Badge badgeContent={props.totalQuy} color="primary">
-            <Icon className={clsx(classes.icon, "fab fa-opencart")} style={{ fontSize: 30, color: "#007bff" }} color="action" />
+          <Link to="/cart"><Badge badgeContent={props.totalQuy} color="primary">
+            <Icon className={clsx(classes.icon, "fab fa-opencart")} style={{ fontSize: 30, color: "#E0D0C1" }} color="action" />
             </Badge>
           </Link>
         </Toolbar>
